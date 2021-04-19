@@ -34,6 +34,7 @@ export default {
         '@nuxt/typescript-build',
         // https://go.nuxtjs.dev/tailwindcss
         '@nuxtjs/tailwindcss',
+        '@braid/vue-formulate/nuxt'
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules

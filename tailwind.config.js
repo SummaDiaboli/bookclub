@@ -18,6 +18,7 @@ module.exports = {
       },
       colors: {
         bookclubnav: "#D2CBC6",
+        bookclubbutton: "#A7A7A7",
         bookclubbody: "#ECE4E4"
       },
       height: {
@@ -26,7 +27,7 @@ module.exports = {
       },
       width: {
         70: "17.75rem"
-      }
+      },
     },
   },
   variants: {

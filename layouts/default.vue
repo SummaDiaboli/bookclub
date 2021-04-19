@@ -6,7 +6,7 @@
         <!-- Nav -->
         <div class="md:px-36 bg-bookclubnav h-19 min-w-full">
             <nav
-                class="flex flex-wrap md:flex-nowrap font-merriweather font-bold text-base"
+                class="flex flex-wrap xl:flex-nowrap font-merriweather font-bold text-base"
             >
                 <nuxt-link to="/">
                     <div class="pt-1">
@@ -43,6 +43,7 @@
                             <nuxt-link :to="action.route">
                                 <span class="text-xl">
                                     <FontAwesomeIcon
+                                        style="color: rgba(31, 41, 55)"
                                         :icon="['fas', action.icon]"
                                     ></FontAwesomeIcon>
                                 </span>
@@ -89,7 +90,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const navLinks = [
     { name: 'Groups', route: '/groups' },
     { name: 'Books', route: '/books' },
-    { name: 'Forum', route: '/forum' },
+    { name: 'Community', route: '/community' },
     { name: 'Readings', route: '/readings' },
 ]
 

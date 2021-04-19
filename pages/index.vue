@@ -53,10 +53,6 @@
                         </nuxt-link>
                     </li>
 
-                    <div v-for="item in items" :key="item.id">
-                        {{ item }}
-                    </div>
-
                     <div class="self-center">
                         <FontAwesomeIcon
                             :icon="['fas', 'chevron-right']"
@@ -108,5 +104,6 @@ export default Vue.extend({
     data: () => {
         return { clubCards, bookCards }
     },
+    head: { title: 'Home' },
 })
 </script>

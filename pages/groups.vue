@@ -65,5 +65,6 @@ export default Vue.extend({
     data: () => {
         return { clubCards }
     },
+    head: { title: 'Groups' },
 })
 </script>

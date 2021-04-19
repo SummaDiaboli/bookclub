@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white h-84 w-70">
+    <div class="bg-white h-84 w-70 rounded-sm shadow-md">
         <div class="">
             <img
                 class="object-cover h-52 min-w-full"

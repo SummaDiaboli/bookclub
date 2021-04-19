@@ -1,6 +1,7 @@
 <template>
     <div class="min-h-screen mx-36 pt-10">
         <div class="grid grid-cols-8">
+            <!-- Main -->
             <div class="col-start-1 col-end-7 row-start-1">
                 <span class="font-bold">All Books</span>
                 <ul class="flex flex-wrap space-x-4">
@@ -22,6 +23,7 @@
                 </ul>
             </div>
 
+            <!-- Sidebar -->
             <div class="col-start-7 col-span-2">
                 <span class="font-bold">Upcoming Book Events</span>
 
@@ -84,5 +86,6 @@ export default Vue.extend({
     data: () => {
         return { bookCards }
     },
+    head: { title: 'Books' },
 })
 </script>
