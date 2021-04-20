@@ -5,12 +5,13 @@
     >
         <!-- Nav -->
         <div class="md:px-36 bg-bookclubnav h-19 min-w-full">
-            <nav
-                class="flex flex-wrap xl:flex-nowrap font-bold text-base"
-            >
+            <nav class="flex flex-wrap xl:flex-nowrap font-bold text-base">
                 <nuxt-link to="/">
                     <div class="pt-1">
-                        <img src="BookClubLogo.svg" alt="BookClub Logo" />
+                        <img
+                            src="~/assets/images/BookClubLogo.svg"
+                            alt="BookClub Logo"
+                        />
                     </div>
                 </nuxt-link>
 

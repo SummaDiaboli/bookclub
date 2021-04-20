@@ -1,0 +1,76 @@
+type User {
+    id: ID! @unique
+    firstName: String!
+    lastName: String!
+    username: String! @unique
+    email: String! @unique
+    password: String!
+    verified: Boolean
+}
+
+type Club {
+    id: ID! @unique
+    name: String! @unique
+    members: [User!]!
+    currentBook: Book!
+    readBooks: [Book!]!
+    creationDate: Time!
+}
+
+type Book {
+    id: ID! @unique
+    name: String!
+    author: String!
+    tags: [Tag!]!
+    available: Boolean
+}
+
+type Discussion {
+    id: ID! @unique
+    text: String!
+    comments: [Comment!]!
+    tags: [Tag!]
+    creationDate: Time!
+}
+
+type Comment {
+    id: ID! @unique
+    text: String!
+    tags: [Tag!]
+    creationDate: Time!
+}
+
+type Tag {
+    id: ID! @unique
+    name: String!
+}
+
+type Query {
+    allUsers: [User!]! @index(name: "all_users")
+    allClubs: [Club!]! @index(name: "all_clubs")
+    allBooks: [Book!]! @index(name: "all_books")
+    allTags: [Tag!]! @index(name: "all_tags")
+    allDiscussion: [Discussion!]! @index(name: "all_discussions")
+    allComments: [Comment!]! @index(name: "all_comments")
+}
+
+""" mutation CreateUser(
+    $firstName: String!
+    $lastName: String!
+    $username: String!
+    $email: String!
+    $password: String!
+) {
+    user(
+        firstName: $firstName
+        lastName: $lastName
+        username: $username
+        email: $email
+    ) {
+        firstName
+        lastName
+        username
+        email
+    }
+}
+ """
