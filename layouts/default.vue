@@ -1,12 +1,12 @@
 <template>
     <div
         :class="{ 'debug-screens': isDev }"
-        class="font-alegraya min-h-full bg-bookclubbody text-gray-800"
+        class="min-h-full font-merriweather bg-bookclubbody text-gray-800"
     >
         <!-- Nav -->
         <div class="md:px-36 bg-bookclubnav h-19 min-w-full">
             <nav
-                class="flex flex-wrap xl:flex-nowrap font-merriweather font-bold text-base"
+                class="flex flex-wrap xl:flex-nowrap font-bold text-base"
             >
                 <nuxt-link to="/">
                     <div class="pt-1">
@@ -55,12 +55,14 @@
         </div>
 
         <!-- Page -->
-        <Nuxt />
+        <div class="font-alegraya">
+            <Nuxt />
+        </div>
 
         <!-- Footer -->
         <footer>
             <div
-                class="px-36 mt-10 bg-bookclubnav h-20 min-w-full font-merriweather text-sm pt-7"
+                class="px-36 mt-10 bg-bookclubnav h-20 min-w-full text-sm pt-7"
             >
                 <div class="grid grid-cols-4">
                     <ul class="flex space-x-5">
