@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen mx-36 pt-10">
+    <div>
         <div class="grid grid-cols-8 gap-10">
             <div class="col-start-1 col-end-7 row-start-1">
                 <!-- Search -->
@@ -100,7 +100,7 @@
             <div class="col-start-7 col-span-2">
                 <h1 class="font-bold">Popular Reading Events</h1>
 
-                <div class="bg-white h-72 mt-4">
+                <div class="bg-white h-72 mt-4 shadow-md rounded-sm">
                     <div class="">
                         <img
                             class="object-cover h-40 min-w-full"
