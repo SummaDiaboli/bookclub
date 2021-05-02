@@ -1,8 +1,8 @@
 <template>
-    <div class="min-h-screen mx-36 pt-10">
+    <div>
         <div class="grid grid-cols-8">
             <div class="col-start-1 col-end-7 row-start-1">
-                <span class="font-bold">All Groups</span>
+                <span class="font-bold">All Clubs</span>
                 <ul class="flex flex-wrap space-x-4">
                     <div v-for="n in 3" :key="n">
                         <li
@@ -10,8 +10,8 @@
                             :key="club.name"
                             class="mt-4"
                         >
-                            <nuxt-link to="#">
-                                <group-card
+                            <nuxt-link :to="`/clubs/${n}`">
+                                <club-card
                                     :name="club.name"
                                     :reading="club.reading"
                                 />
@@ -24,7 +24,7 @@
             <div class="col-start-7 col-span-2">
                 <span class="font-bold">Upcoming Club Events</span>
 
-                <div class="bg-white h-72 mt-4">
+                <div class="bg-white h-72 mt-4 shadow-md rounded-sm">
                     <div class="">
                         <img
                             class="object-cover h-40 min-w-full"
@@ -52,7 +52,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import GroupCard from '~/components/GroupCard.vue'
+import ClubCard from '~/components/ClubCard.vue'
 
 const clubCards = [
     { name: 'The Ladies Club', reading: 'The Court of Silver Flames' },
@@ -61,7 +61,7 @@ const clubCards = [
 ]
 
 export default Vue.extend({
-    components: { GroupCard },
+    components: { ClubCard },
     data: () => {
         return { clubCards }
     },

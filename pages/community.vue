@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen mx-36 pt-10">
+    <div>
         <div class="grid grid-cols-8 gap-10">
             <div class="col-start-1 col-end-7 row-start-1">
                 <!-- Search -->
@@ -30,7 +30,9 @@
                     <ul class="flex flex-col space-y-4">
                         <div v-for="i in 5" :key="i" class="">
                             <li>
-                                <div class="bg-white h-40 rounded-md shadow-md">
+                                <div
+                                    class="bg-white h-40 rounded-md shadow-md hover:shadow-lg"
+                                >
                                     <div class="px-6 py-2">
                                         <nuxt-link to="#">
                                             <div class="relative">
@@ -70,6 +72,7 @@
                                                 "
                                             >
                                                 <FontAwesomeIcon
+                                                    class="cursor-pointer"
                                                     :icon="['far', 'bookmark']"
                                                     @click="
                                                         prevent
@@ -79,6 +82,7 @@
                                             </div>
                                             <div v-else>
                                                 <FontAwesomeIcon
+                                                    class="cursor-pointer"
                                                     :icon="['fas', 'bookmark']"
                                                     @click="
                                                         prevent
@@ -121,7 +125,7 @@
             <div class="col-start-7 col-span-2">
                 <span class="font-bold">Popular Discussions</span>
 
-                <div class="bg-white h-72 mt-4">
+                <div class="bg-white h-72 mt-4 shadow-md rounded-sm">
                     <div class="">
                         <img
                             class="object-cover h-40 min-w-full"

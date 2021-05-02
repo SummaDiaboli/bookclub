@@ -4,69 +4,72 @@
         class="min-h-full font-merriweather bg-bookclubbody text-gray-800"
     >
         <!-- Nav -->
-        <div class="md:px-36 bg-bookclubnav h-19 min-w-full">
+        <div class="xl:px-28 2xl:px-36 bg-bookclubnav h-19 min-w-full">
             <nav class="flex flex-wrap xl:flex-nowrap font-bold text-base">
                 <nuxt-link to="/">
-                    <div class="pt-1">
-                        <img
-                            src="~/assets/images/BookClubLogo.svg"
-                            alt="BookClub Logo"
-                        />
-                    </div>
+                    <!-- <div class="xl:pt-1"> -->
+                    <img
+                        src="~/assets/images/BookClubLogo.svg"
+                        alt="BookClub Logo"
+                        class="h-20 xl:h-16 xl:pt-1"
+                    />
+                    <!-- </div> -->
                 </nuxt-link>
 
-                <div class="self-center md:ml-40 container pt-2">
-                    <ul class="flex space-x-10">
-                        <li v-for="link in navLinks" :key="link.name">
-                            <nuxt-link
-                                :to="link.route"
-                                :class="[
-                                    $route.name === link.name.toLowerCase()
-                                        ? 'border-b-3.5 rounded-sm border-gray-800 pb-2'
-                                        : '',
-                                ]"
-                                class="hover:border-b-3.5 hover:rounded-sm hover:border-gray-600 hover:pb-2"
-                                >{{ link.name }}</nuxt-link
-                            >
-                        </li>
-                    </ul>
-                </div>
+                <div class="self-center flex flex-wrap">
+                    <div class="xl:mx-20 xl:mr-40 xl:pt-2">
+                        <ul class="flex flex-wrap space-x-10">
+                            <li v-for="link in navLinks" :key="link.name">
+                                <nuxt-link
+                                    :to="link.route"
+                                    :class="[
+                                        $route.fullPath.includes(link.route)
+                                            ? 'border-b-3.5 rounded-sm border-gray-600 pb-2'
+                                            : '',
+                                    ]"
+                                    class="hover:border-b-3.5 hover:rounded-sm hover:border-gray-500 hover:pb-2"
+                                    >{{ link.name }}</nuxt-link
+                                >
+                            </li>
+                        </ul>
+                    </div>
 
-                <input
-                    type="text"
-                    class="w-3/6 text-sm px-3 mt-2 mr-2 h-9 mx-auto bg-white rounded-2xl flex self-center space-x-4 hover:ring-1 hover:ring-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
-                    placeholder="Books, Authors, Groups..."
-                />
+                    <input
+                        type="text"
+                        class="w-70 text-sm px-3 mt-1 mr-2 h-9 mx-auto bg-white rounded-2xl flex space-x-4 hover:ring-1 hover:ring-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                        placeholder="Books, Authors, Clubs..."
+                    />
 
-                <div class="self-center pt-2">
-                    <ul class="flex space-x-6">
-                        <li v-for="action in navActions" :key="action.name">
-                            <nuxt-link :to="action.route">
-                                <span class="text-xl">
-                                    <FontAwesomeIcon
-                                        style="color: rgba(31, 41, 55)"
-                                        :icon="['fas', action.icon]"
-                                    ></FontAwesomeIcon>
-                                </span>
-                            </nuxt-link>
-                        </li>
-                    </ul>
+                    <div class="pt-2">
+                        <ul class="flex space-x-8">
+                            <li v-for="action in navActions" :key="action.name">
+                                <nuxt-link :to="action.route">
+                                    <span class="text-xl">
+                                        <FontAwesomeIcon
+                                            style="color: rgba(31, 41, 55)"
+                                            :icon="['fas', action.icon]"
+                                        ></FontAwesomeIcon>
+                                    </span>
+                                </nuxt-link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </div>
 
         <!-- Page -->
-        <div class="font-alegraya">
+        <div class="font-alegraya min-h-screen lg:mx-36 pt-10">
             <Nuxt />
         </div>
 
         <!-- Footer -->
         <footer>
             <div
-                class="px-36 mt-10 bg-bookclubnav h-20 min-w-full text-sm pt-7"
+                class="px-4 xl:px-36 mt-10 bg-bookclubnav lg:h-20 min-w-full text-xs xl:text-sm pt-2 lg:pt-7"
             >
                 <div class="grid grid-cols-4">
-                    <ul class="flex space-x-5">
+                    <ul class="flex flex-wrap lg:space-x-5">
                         <li v-for="link in footerLinks" :key="link.name">
                             <nuxt-link to="#">
                                 <FontAwesomeIcon :icon="['fab', link.icon]" />
@@ -91,7 +94,7 @@ import Vue from 'vue'
 const isDev = process.env.NODE_ENV === 'development'
 
 const navLinks = [
-    { name: 'Groups', route: '/groups' },
+    { name: 'Clubs', route: '/clubs' },
     { name: 'Books', route: '/books' },
     { name: 'Community', route: '/community' },
     { name: 'Readings', route: '/readings' },

@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen mx-36 pt-10">
+    <div>
         <div class="grid grid-cols-8 gap-10">
             <div class="col-start-1 col-end-7 row-start-1">
                 <!-- Search -->
@@ -18,7 +18,7 @@
                         /> -->
 
                         <div
-                            class="uppercase cursor-pointer py-1 px-2 inline-block shadow-sm font-bold bg-bookclubnav hover:bg-bookclubbutton rounded-sm"
+                            class="cursor-pointer py-1 px-2 inline-block shadow-sm font-bold bg-bookclubnav hover:shadow-md rounded-md"
                         >
                             Manage
                         </div>
@@ -30,7 +30,7 @@
                     <ul class="flex flex-col space-y-4">
                         <div v-for="i in 5" :key="i">
                             <li>
-                                <div class="bg-white h-48 rounded-md shadow-md">
+                                <div class="bg-white h-48 rounded-md shadow-md hover:shadow-lg">
                                     <div class="px-6 py-2">
                                         <nuxt-link to="#">
                                             <div class="relative">
@@ -100,7 +100,7 @@
             <div class="col-start-7 col-span-2">
                 <h1 class="font-bold">Popular Reading Events</h1>
 
-                <div class="bg-white h-72 mt-4">
+                <div class="bg-white h-72 mt-4 shadow-md rounded-sm">
                     <div class="">
                         <img
                             class="object-cover h-40 min-w-full"

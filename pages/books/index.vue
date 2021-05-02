@@ -1,25 +1,25 @@
 <template>
-    <div class="min-h-screen mx-36 pt-10">
+    <div>
         <div class="grid grid-cols-8">
             <!-- Main -->
             <div class="col-start-1 col-end-7 row-start-1">
                 <span class="font-bold">All Books</span>
-                <ul class="flex flex-wrap space-x-4">
-                    <div v-for="n in 4" :key="n">
-                        <li
-                            v-for="book in bookCards"
-                            :key="book.name"
-                            class="mt-4"
-                        >
-                            <nuxt-link to="#">
-                                <book-card
-                                    :author="book.author"
-                                    :name="book.name"
-                                    :tags="book.tags"
-                                />
-                            </nuxt-link>
-                        </li>
-                    </div>
+                <div v-if="loading">Loading...</div>
+                <ul v-else class="flex flex-wrap">
+                    <li
+                        v-for="book in receivedBooks"
+                        :key="book.id"
+                        class="mt-4 mx-2"
+                    >
+                        <nuxt-link :to="`/books/${book.id}`">
+                            <book-card
+                                :image="book.volumeInfo.imageLinks"
+                                :author="getAuthor(book.volumeInfo.authors)"
+                                :name="book.volumeInfo.title"
+                                :tags="book.volumeInfo.categories"
+                            />
+                        </nuxt-link>
+                    </li>
                 </ul>
             </div>
 
@@ -27,7 +27,7 @@
             <div class="col-start-7 col-span-2">
                 <span class="font-bold">Upcoming Book Events</span>
 
-                <div class="bg-white h-72 mt-4">
+                <div class="bg-white h-72 mt-4 shadow-md rounded-sm">
                     <div class="">
                         <img
                             class="object-cover h-40 min-w-full"
@@ -84,8 +84,31 @@ const bookCards = [
 export default Vue.extend({
     components: { BookCard },
     data: () => {
-        return { bookCards }
+        return { bookCards, receivedBooks: [] as any, loading: true }
     },
     head: { title: 'Books' },
+    created() {
+        fetch(
+            'https://www.googleapis.com/books/v1/volumes?q=a&printType=books&orderBy=newest&maxResults=40&projection=full'
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                this.receivedBooks.push(data.items)
+                this.receivedBooks = this.receivedBooks[0]
+            })
+            .then(() => {
+                // console.log(this.receivedBooks)
+                this.loading = false
+            })
+    },
+    methods: {
+        getAuthor(author) {
+            if (author !== undefined) {
+                return author[0]
+            } else {
+                return ''
+            }
+        },
+    },
 })
 </script>
