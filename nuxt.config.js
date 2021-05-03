@@ -2,8 +2,8 @@ require('dotenv').config()
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
-    target: 'static',
-    mode: 'universal',
+    // target: 'static',
+    // mode: 'universal',
     // ssr: false,
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
@@ -50,7 +50,7 @@ export default {
     axios: {},
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
+    // build: {},
 
     tailwindcss: {
         jit: true,
