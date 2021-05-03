@@ -60,10 +60,16 @@ export default {
     },
 
     router: {
-        trailingSlash: false
+        trailingSlash: true
     },
 
     generate: {
-        fallback: true
+        fallback: true,
+        routes: [
+            '/books',
+            '/readings',
+            '/signup',
+            '/community'
+        ]
     }
 }
