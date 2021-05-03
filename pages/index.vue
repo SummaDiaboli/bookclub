@@ -15,7 +15,7 @@
                     class="inline-flex flex-wrap space-y-3 lg:space-y-0 xl:space-x-5 mt-4"
                 >
                     <li v-for="club in clubCards" :key="club.name">
-                        <nuxt-link to="#">
+                        <nuxt-link to="/clubs/1">
                             <club-card
                                 :name="club.name"
                                 :reading="club.reading"

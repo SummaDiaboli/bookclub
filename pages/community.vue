@@ -30,7 +30,9 @@
                     <ul class="flex flex-col space-y-4">
                         <div v-for="i in 5" :key="i" class="">
                             <li>
-                                <div class="bg-white h-40 rounded-md shadow-md">
+                                <div
+                                    class="bg-white h-40 rounded-md shadow-md hover:shadow-lg"
+                                >
                                     <div class="px-6 py-2">
                                         <nuxt-link to="#">
                                             <div class="relative">
@@ -70,6 +72,7 @@
                                                 "
                                             >
                                                 <FontAwesomeIcon
+                                                    class="cursor-pointer"
                                                     :icon="['far', 'bookmark']"
                                                     @click="
                                                         prevent
@@ -79,6 +82,7 @@
                                             </div>
                                             <div v-else>
                                                 <FontAwesomeIcon
+                                                    class="cursor-pointer"
                                                     :icon="['fas', 'bookmark']"
                                                     @click="
                                                         prevent

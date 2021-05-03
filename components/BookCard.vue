@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white h-96 w-52 rounded-sm shadow-md">
+    <div class="bg-white h-96 w-52 rounded-sm shadow-md hover:shadow-lg">
         {{ getThumbnail() }}
         <div class="">
             <img class="object-fill h-64 min-w-full" :src="bookThumbnail" />
@@ -32,7 +32,7 @@ export default Vue.extend({
     props: { name: String, author: String, tags: Array, image: Object },
     data: () => {
         return {
-            bookThumbnail: 'https://placekitten.com/300/400',
+            bookThumbnail: 'https://picsum.photos/900?random=1',
         }
     },
     methods: {
@@ -40,7 +40,7 @@ export default Vue.extend({
             if (this.image !== undefined) {
                 this.bookThumbnail = this.image.thumbnail
             } else {
-                this.bookThumbnail = 'https://placekitten.com/300/400'
+                this.bookThumbnail = 'https://picsum.photos/900?random=1'
             }
         },
     },

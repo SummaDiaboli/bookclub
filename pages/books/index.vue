@@ -14,7 +14,7 @@
                         <nuxt-link :to="`/books/${book.id}`">
                             <book-card
                                 :image="book.volumeInfo.imageLinks"
-                                :author="book.volumeInfo.authors[0]"
+                                :author="getAuthor(book.volumeInfo.authors)"
                                 :name="book.volumeInfo.title"
                                 :tags="book.volumeInfo.categories"
                             />
@@ -100,6 +100,15 @@ export default Vue.extend({
                 // console.log(this.receivedBooks)
                 this.loading = false
             })
+    },
+    methods: {
+        getAuthor(author) {
+            if (author !== undefined) {
+                return author[0]
+            } else {
+                return ''
+            }
+        },
     },
 })
 </script>

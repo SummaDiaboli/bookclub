@@ -1,9 +1,9 @@
 <template>
-    <div class="bg-white h-84 w-70 rounded-sm shadow-md">
+    <div class="bg-white h-84 w-70 rounded-sm shadow-md hover:shadow-lg">
         <div class="">
             <img
                 class="object-cover h-52 min-w-full"
-                src="https://placekitten.com/300/400"
+                src="https://picsum.photos/900?random=2"
             />
         </div>
         <div class="min-w-full">
