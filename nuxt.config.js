@@ -60,6 +60,6 @@ export default {
     },
 
     generate: {
-        fallback: true
+        fallback: 'index'
     }
 }
