@@ -2,9 +2,9 @@ require('dotenv').config()
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
-    target: 'server',
-    // mode: 'universal',
-    ssr: false,
+    target: 'static',
+    mode: 'universal',
+    // ssr: false,
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
         title: 'Book Club',
