@@ -60,11 +60,6 @@ export default {
     },
 
     generate: {
-        routes: [
-            '/clubs',
-            '/books',
-            '/community',
-            '/readings'
-        ]
+        fallback: true
     }
 }
