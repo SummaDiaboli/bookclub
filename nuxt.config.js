@@ -59,7 +59,11 @@ export default {
         prefix: false
     },
 
+    router: {
+        trailingSlash: false
+    },
+
     generate: {
-        fallback: '404.html'
+        fallback: true
     }
 }
