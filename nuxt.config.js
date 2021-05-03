@@ -3,6 +3,7 @@ require('dotenv').config()
 export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: 'static',
+    mode: 'universal',
     // ssr: false,
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
@@ -59,7 +60,7 @@ export default {
         prefix: false
     },
 
-    generate: {
-        fallback: true,
-    }
+    // generate: {
+    //     fallback: true,
+    // }
 }
