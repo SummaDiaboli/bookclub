@@ -59,7 +59,12 @@ export default {
         prefix: false
     },
 
-    // generate: {
-    //     fallback: true
-    // }
+    generate: {
+        routes: [
+            '/clubs',
+            '/books',
+            '/community',
+            '/readings'
+        ]
+    }
 }
