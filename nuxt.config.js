@@ -60,12 +60,6 @@ export default {
     },
 
     generate: {
-        fallback: true,
-        routes: [
-            '/books/',
-            '/readings',
-            '/signup',
-            '/community'
-        ]
+        fallback: true
     }
 }

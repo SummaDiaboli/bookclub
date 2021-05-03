@@ -113,7 +113,7 @@ const footerLinks = [
     { name: 'Twitter', icon: 'twitter' },
 ]
 
-const fetchBooks = () => {}
+// const fetchBooks = () => {}
 
 export default Vue.extend({
     data: () => {
