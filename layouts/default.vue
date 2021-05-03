@@ -119,8 +119,8 @@ export default Vue.extend({
     data: () => {
         return { isDev, navLinks, navActions, footerLinks }
     },
-    created() {
-        this.$router.push('/')
-    },
+    // created() {
+    //     this.$router.replace('/')
+    // },
 })
 </script>
