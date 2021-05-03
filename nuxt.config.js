@@ -61,5 +61,10 @@ export default {
 
     generate: {
         fallback: true
+    },
+
+    router: {
+        prefetchPayloads: false,
+        prefetchLinks: false
     }
 }
