@@ -59,7 +59,7 @@ export default {
         prefix: false
     },
 
-    generate: {
-        fallback: true
-    }
+    // generate: {
+    //     fallback: true
+    // }
 }
