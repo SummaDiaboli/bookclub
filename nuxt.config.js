@@ -59,14 +59,10 @@ export default {
         prefix: false
     },
 
-    router: {
-        trailingSlash: true
-    },
-
     generate: {
         fallback: true,
         routes: [
-            '/books',
+            '/books/',
             '/readings',
             '/signup',
             '/community'
