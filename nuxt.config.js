@@ -1,10 +1,10 @@
 require('dotenv').config()
 
-const getDynamicRoutes = function() {
-    return [].concat(
-        ['/clubs/1', '/clubs/2', '/clubs/3'],
-    )
-}
+// const getDynamicRoutes = function() {
+//     return [].concat(
+//         ['/clubs/1', '/clubs/2', '/clubs/3'],
+//     )
+// }
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
@@ -66,7 +66,7 @@ export default {
     },
 
     generate: {
-        // fallback: true
-        routes: getDynamicRoutes
+        fallback: true
+        // routes: getDynamicRoutes
     },
 }
