@@ -18,7 +18,7 @@
                         /> -->
 
                         <div
-                            class="cursor-pointer py-1 px-2 inline-block shadow-sm font-bold bg-bookclubnav hover:shadow-md rounded-md"
+                            class="cursor-pointer py-1 px-2 inline-block shadow-sm font-bold bg-bookclubnav hover:bg-bookclubbutton rounded-md"
                         >
                             Manage
                         </div>
@@ -30,7 +30,9 @@
                     <ul class="flex flex-col space-y-4">
                         <div v-for="i in 5" :key="i">
                             <li>
-                                <div class="bg-white h-48 rounded-md shadow-md hover:shadow-lg">
+                                <div
+                                    class="bg-white h-48 rounded-md shadow-md hover:shadow-lg"
+                                >
                                     <div class="px-6 py-2">
                                         <nuxt-link to="#">
                                             <div class="relative">
