@@ -34,6 +34,10 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('tailwindcss-debug-screens'), require('@tailwindcss/typography')],
+  plugins: [
+    require('tailwindcss-debug-screens'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp')
+  ],
   // important: true,
 }

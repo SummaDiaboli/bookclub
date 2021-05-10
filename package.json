@@ -16,6 +16,7 @@
     "@braid/vue-formulate": "^2.5.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@nuxtjs/axios": "^5.13.1",
+    "@tailwindcss/line-clamp": "^0.2.0",
     "@tailwindcss/typography": "^0.4.0",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
@@ -49,6 +50,7 @@
     "prettier": "^2.2.1",
     "tailwindcss-debug-screens": "^2.0.0",
     "ts-jest": "^26.5.4",
+    "vue-click-outside": "^1.1.0",
     "vue-html-secure": "^1.0.9",
     "vue-jest": "^3.0.4",
     "vue-router": "^3.5.1"
