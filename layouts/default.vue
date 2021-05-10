@@ -4,7 +4,9 @@
         class="min-h-full font-merriweather bg-bookclubbody text-gray-800"
     >
         <!-- Nav -->
-        <div class="xl:px-28 2xl:px-36 bg-bookclubnav h-19 min-w-full">
+        <div
+            class="xl:px-28 2xl:px-36 bg-bookclubnav h-19 min-w-full sticky top-0 z-50"
+        >
             <nav class="flex flex-wrap xl:flex-nowrap font-bold text-base">
                 <nuxt-link to="/">
                     <!-- <div class="xl:pt-1"> -->
@@ -34,51 +36,8 @@
                         </ul>
                     </div>
 
-                    <div class="pr-6">
-                        <div class="flex">
-                            <input
-                                v-model="searchText"
-                                type="text"
-                                class="w-70 text-sm px-3 mt-1 mr-2 h-9 mx-auto bg-white rounded-2xl flex space-x-4 hover:ring-1 hover:ring-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
-                                placeholder="Books, Authors, Clubs..."
-                                @change="getBooks"
-                            />
-
-                            <span class="text-xl pt-2">
-                                <FontAwesomeIcon
-                                    style="color: rgba(31, 41, 55)"
-                                    :icon="['fas', 'search']"
-                                    class="cursor-pointer"
-                                    @click="getBooks"
-                                ></FontAwesomeIcon>
-                            </span>
-                        </div>
-
-                        <div class="absolute pt-1">
-                            <div
-                                class="rounded-md shadow-sm w-70 max-h-52 overflow-auto bg-white"
-                            >
-                                <div
-                                    v-for="book in searchResults"
-                                    :key="book.id"
-                                    class="truncate p-2 flex items-center gap-2"
-                                    @click="gotoBook(book.id)"
-                                >
-                                    <img
-                                        :src="
-                                            getThumbnail(
-                                                book.volumeInfo.imageLinks
-                                            )
-                                        "
-                                        class="h-10 w-10"
-                                    />
-                                    <div class="truncate font-medium text-sm">
-                                        {{ book.volumeInfo.title }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Searchbar -->
+                    <search-bar />
 
                     <div class="pt-2">
                         <ul class="flex gap-8">
@@ -130,6 +89,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import SearchBar from '~/components/SearchBar.vue'
 
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -156,44 +116,16 @@ const footerLinks = [
 // const fetchBooks = () => {}
 
 export default Vue.extend({
+    components: {
+        SearchBar,
+    },
     data: () => {
         return {
             isDev,
             navLinks,
             navActions,
             footerLinks,
-            searchText: '',
-            searchResults: [] as any[],
         }
-    },
-    methods: {
-        async getBooks(_e) {
-            console.log(this.searchText)
-            await fetch(
-                `https://www.googleapis.com/books/v1/volumes?q=${this.searchText}&printType=books&orderBy=relevance&maxResults=10&projection=lite`
-            )
-                .then((response) => response.json())
-                .then((data) => {
-                    this.searchResults = []
-                    this.searchResults.push(data.items)
-                    this.searchResults = this.searchResults[0]
-                })
-                // .then(() => console.log(this.searchResults))
-        },
-        gotoBook(id, _e) {
-            this.$router.push(`/books/${id}`)
-            this.searchText = ''
-            this.searchResults = []
-        },
-        getThumbnail(image) {
-            let bookThumbnail
-            if (image !== undefined) {
-                bookThumbnail = image.thumbnail
-            } else {
-                bookThumbnail = 'https://picsum.photos/900?random=1'
-            }
-            return bookThumbnail
-        },
     },
     // created() {
     //     this.$router.replace('/')
