@@ -3,8 +3,10 @@
     <div>
         <div v-if="loading">Loading...</div>
         <div v-else>
-            <div class="flex flex-row gap-16">
-                <div class="w-2/3 flex gap-4 h-84">
+            <div class="flex flex-wrap lg:flex-row gap-16">
+                <div
+                    class="lg:w-2/3 flex flex-wrap gap-4 h-84 justify-center xl:justify-start"
+                >
                     <div class="bg-bookclubnav h-84 w-52">
                         <img
                             :src="getThumbnail(bookData.volumeInfo.imageLinks)"
@@ -12,7 +14,7 @@
                         />
                     </div>
 
-                    <div class="w-3/5">
+                    <div class="lg:w-3/5">
                         <div class="font-bold text-2xl">
                             {{ bookData.volumeInfo.title }}
                         </div>
@@ -48,7 +50,7 @@
                 </div>
 
                 <!-- Sidebar -->
-                <div>
+                <div class="invisible xl:visible">
                     <div>
                         <h1 class="font-bold">Recommended Books</h1>
                     </div>
@@ -71,9 +73,9 @@
             </div>
 
             <!-- Read by section -->
-            <div class="mt-10">
+            <div class="xl:mt-10">
                 <div class="font-bold">Currently Read By</div>
-                <ul class="flex flex-wrap space-x-4">
+                <ul class="flex flex-wrap gap-4">
                     <li v-for="club in clubCards" :key="club.name" class="mt-4">
                         <nuxt-link :to="`/clubs/${club.id}`">
                             <div
@@ -82,7 +84,9 @@
                                 <div class="">
                                     <img
                                         class="object-cover h-52 min-w-full"
-                                        :src="`https://picsum.photos/900?random=${club.id+3}`"
+                                        :src="`https://picsum.photos/900?random=${
+                                            club.id + 3
+                                        }`"
                                     />
                                 </div>
                                 <div class="min-w-full">
@@ -137,12 +141,13 @@ export default Vue.extend({
             .then((response) => response.json())
             .then((data) => {
                 this.bookData = data
+                // console.log(data)
                 this.loading = false
             })
     },
     methods: {
         getThumbnail(image) {
-            console.log(image)
+            // console.log(image)
             if (image !== undefined) {
                 return image.thumbnail
             } else {

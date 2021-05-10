@@ -67,7 +67,9 @@
                                         class="bg-white h-40 rounded-md shadow-md hover:shadow-lg"
                                     >
                                         <div class="px-6 py-2">
-                                            <nuxt-link to="#">
+                                            <nuxt-link
+                                                :to="`/discussions/${i}`"
+                                            >
                                                 <div class="relative">
                                                     <div
                                                         class="font-bold text-lg col-span-2"

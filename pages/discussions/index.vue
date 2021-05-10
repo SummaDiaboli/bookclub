@@ -18,7 +18,7 @@
                         /> -->
 
                         <div
-                            class="uppercase cursor-pointer py-1 px-2 inline-block font-bold bg-bookclubnav hover:bg-bookclubbutton rounded-sm"
+                            class="cursor-pointer py-1 px-2 inline-block shadow-sm font-bold bg-bookclubnav hover:bg-bookclubbutton rounded-md"
                         >
                             Manage
                         </div>
@@ -34,7 +34,7 @@
                                     class="bg-white h-40 rounded-md shadow-md hover:shadow-lg"
                                 >
                                     <div class="px-6 py-2">
-                                        <nuxt-link to="#">
+                                        <nuxt-link :to="`discussions/${i}`">
                                             <div class="relative">
                                                 <div
                                                     class="font-bold text-lg col-span-2"
