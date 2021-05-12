@@ -1,9 +1,8 @@
 <template>
-    <div class="xl:pr-6">
+    <div v-click-outside="clearSearch" class="xl:pr-6">
         <div class="flex">
             <input
                 v-model="searchText"
-                v-click-outside="clearSearch"
                 type="text"
                 class="w-70 text-sm px-3 mt-1 mr-2 h-9 mx-auto bg-white rounded-2xl flex space-x-4 hover:ring-1 hover:ring-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
                 placeholder="Books, Authors, Clubs..."
