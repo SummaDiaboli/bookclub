@@ -1,21 +1,21 @@
 <template>
-    <div class="bg-white h-96 w-52 rounded-sm shadow-md hover:shadow-lg">
+    <div class="bg-white w-72 xl:h-96 xl:w-52 rounded-sm shadow-md hover:shadow-lg">
         {{ getThumbnail() }}
         <div class="">
             <img class="object-fill h-64 min-w-full" :src="bookThumbnail" />
         </div>
         <div class="min-w-full prose">
             <div
-                class="pt-2 px-2 capitalize overflow-ellipsis overflow-hidden h-14 leading-tight text-center font-bold text-xl"
+                class="pt-2 px-2 capitalize line-clamp-2 xl:h-14 leading-tight text-center font-bold text-xl"
             >
                 {{ name }}
             </div>
 
-            <div class="text-center truncate pt-1 px-4 capitalize font-medium">
+            <div class="text-center line-clamp-1 pt-1 px-4 capitalize font-medium">
                 {{ author }}
             </div>
 
-            <div class="text-center px-2 text-gray-500 italic text-sm">
+            <div class="text-center px-2 text-gray-500 italic text-sm line-clamp-1">
                 <span v-for="tag in tags" :key="tag">
                     {{ tag }}
                 </span>

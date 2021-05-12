@@ -1,5 +1,5 @@
 <template>
-    <div class="pr-6">
+    <div class="xl:pr-6">
         <div class="flex">
             <input
                 v-model="searchText"
@@ -59,11 +59,11 @@ export default Vue.extend({
     },
     methods: {
         async getBooks(_e) {
-            console.log(this.searchText)
-            await fetch(
-                `https://www.googleapis.com/books/v1/volumes?q=${this.searchText}&printType=books&orderBy=relevance&maxResults=10&projection=lite`
-            )
-                .then((response) => response.json())
+            // console.log(this.searchText)
+            await this.$axios
+                .$get(
+                    `https://www.googleapis.com/books/v1/volumes?q=${this.searchText}&printType=books&orderBy=relevance&maxResults=10&projection=lite`
+                )
                 .then((data) => {
                     this.searchResults = []
                     this.searchResults.push(data.items)

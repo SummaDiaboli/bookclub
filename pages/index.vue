@@ -12,7 +12,7 @@
 
             <div>
                 <ul
-                    class="inline-flex flex-wrap space-y-3 lg:space-y-0 xl:space-x-5 mt-4"
+                    class="flex flex-wrap gap-4 mt-4"
                 >
                     <li v-for="club in clubCards" :key="club.name">
                         <nuxt-link to="/clubs/1">
@@ -23,7 +23,7 @@
                         </nuxt-link>
                     </li>
 
-                    <div class="self-center">
+                    <div class="self-center invisible xl:visible">
                         <FontAwesomeIcon
                             :icon="['fas', 'chevron-right']"
                             class="cursor-pointer"
@@ -57,7 +57,7 @@
                         </nuxt-link>
                     </li>
 
-                    <div class="self-center">
+                    <div class="self-center xl:visible invisible">
                         <FontAwesomeIcon
                             :icon="['fas', 'chevron-right']"
                             class="cursor-pointer"

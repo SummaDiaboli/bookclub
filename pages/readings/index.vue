@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="grid grid-cols-8 gap-10">
-            <div class="col-start-1 col-end-7 row-start-1">
+        <div class="">
+            <div class="">
                 <!-- Search -->
                 <div class="h-10 container relative w-full">
                     <div class="absolute top-0 right-0">
@@ -27,11 +27,11 @@
 
                 <!-- CardList -->
                 <div>
-                    <ul class="flex flex-col space-y-4">
+                    <ul class="flex flex-col gap-4">
                         <div v-for="i in 5" :key="i">
                             <li>
                                 <div
-                                    class="bg-white h-48 rounded-md shadow-md hover:shadow-lg"
+                                    class="bg-white xl:max-h-48 rounded-md shadow-md hover:shadow-lg"
                                 >
                                     <div class="px-6 py-2">
                                         <nuxt-link to="#">
@@ -54,7 +54,7 @@
 
                                         <!-- Bottom card actions -->
                                         <div
-                                            class="mt-2 relative flex space-x-5"
+                                            class="mt-2 relative flex flex-col xl:flex-row gap-5"
                                         >
                                             <!-- Buttons -->
                                             <div
@@ -77,7 +77,7 @@
 
                                             <!-- Additional information -->
                                             <div
-                                                class="absolute top-0 right-0 text-sm text-gray-500 space-x-5"
+                                                class="xl:absolute top-0 right-0 text-sm text-gray-500 space-x-5"
                                             >
                                                 <span
                                                     >{{
@@ -98,8 +98,8 @@
                 </div>
             </div>
 
-            <!-- Sidebar -->
-            <div class="col-start-7 col-span-2">
+            <!--  Sidebar 
+            <div class="col-start-7 col-span-2 invisible xl:visible">
                 <h1 class="font-bold">Popular Reading Events</h1>
 
                 <div class="bg-white h-72 mt-4 shadow-md rounded-sm">
@@ -125,6 +125,7 @@
                     </div>
                 </div>
             </div>
+        </div> -->
         </div>
     </div>
 </template>

@@ -3,7 +3,7 @@
         <div class="grid grid-cols-8">
             <div class="col-start-1 col-end-7 row-start-1">
                 <span class="font-bold">All Clubs</span>
-                <ul class="flex flex-wrap space-x-4">
+                <ul class="flex flex-wrap gap-4">
                     <div v-for="n in 3" :key="n">
                         <li
                             v-for="club in clubCards"
@@ -21,7 +21,7 @@
                 </ul>
             </div>
 
-            <div class="col-start-7 col-span-2">
+            <div class="col-start-7 col-span-2 invisible xl:visible">
                 <span class="font-bold">Upcoming Club Events</span>
 
                 <div class="bg-white h-72 mt-4 shadow-md rounded-sm">

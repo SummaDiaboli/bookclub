@@ -5,12 +5,8 @@
             <div class="col-start-1 col-end-7 row-start-1">
                 <span class="font-bold">All Books</span>
                 <div v-if="loading">Loading...</div>
-                <ul v-else class="flex flex-wrap">
-                    <li
-                        v-for="book in receivedBooks"
-                        :key="book.id"
-                        class="mt-4 mx-2"
-                    >
+                <ul v-else class="flex flex-wrap gap-6 xl:gap-4">
+                    <li v-for="book in receivedBooks" :key="book.id">
                         <nuxt-link :to="`/books/${book.id}`">
                             <book-card
                                 :image="book.volumeInfo.imageLinks"
@@ -24,7 +20,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="col-start-7 col-span-2">
+            <div class="col-start-7 col-span-2 invisible xl:visible">
                 <span class="font-bold">Upcoming Book Events</span>
 
                 <div class="bg-white h-72 mt-4 shadow-md rounded-sm">
@@ -88,10 +84,10 @@ export default Vue.extend({
     },
     head: { title: 'Books' },
     created() {
-        fetch(
-            'https://www.googleapis.com/books/v1/volumes?q=a&printType=books&orderBy=newest&maxResults=40&projection=full'
-        )
-            .then((response) => response.json())
+        this.$axios
+            .$get(
+                'https://www.googleapis.com/books/v1/volumes?q=a&printType=books&orderBy=newest&maxResults=40&projection=full'
+            )
             .then((data) => {
                 this.receivedBooks.push(data.items)
                 this.receivedBooks = this.receivedBooks[0]
