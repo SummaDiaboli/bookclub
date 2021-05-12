@@ -45,7 +45,7 @@
 
             <div>
                 <ul
-                    class="flex flex-wrap space-y-3 lg:space-y-0 xl:space-x-5 mt-4"
+                    class="flex flex-wrap gap-4 mt-4"
                 >
                     <li v-for="book in bookCards" :key="book.name">
                         <nuxt-link to="#">
