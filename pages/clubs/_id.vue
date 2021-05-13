@@ -7,8 +7,10 @@
                 class="object-cover h-64 min-w-full bg-bookclubnav"
             />
 
-            <div class="bg-white h-16 shadow-md">
-                <div class="flex space-x-32 justify-center h-full items-center">
+            <div class="bg-white xl:h-16 shadow-md">
+                <div
+                    class="flex flex-col gap-1 xl:flex-row xl:gap-32 justify-center h-full items-center"
+                >
                     <span class="text-md text-bookgray">
                         Reading: The Court of Silver Flames
                     </span>
@@ -20,8 +22,8 @@
         </div>
 
         <!-- About Section -->
-        <div class="flex flex-row gap-16">
-            <div class="w-2/3">
+        <div class="flex flex-col xl:flex-row gap-16">
+            <div class="xl:w-2/3">
                 <div class="mt-10">
                     <div class="flex justify-between items-center">
                         <h1 class="font-bold">About us</h1>
@@ -33,7 +35,7 @@
                     </div>
 
                     <div
-                        class="bg-white rounded-md shadow-md h-32 mt-2 px-2 py-1"
+                        class="bg-white rounded-md shadow-md  mt-2 px-2 py-1"
                     >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Purus, diam enim, risus id ac eget mi tincidunt. Eu,
@@ -64,12 +66,10 @@
                             <div v-for="i in 3" :key="i" class="">
                                 <li>
                                     <div
-                                        class="bg-white h-40 rounded-md shadow-md hover:shadow-lg"
+                                        class="bg-white xl:max-h-40 rounded-md shadow-md hover:shadow-lg"
                                     >
                                         <div class="px-6 py-2">
-                                            <nuxt-link
-                                                :to="`/discussions/${i}`"
-                                            >
+                                            <nuxt-link :to="`/discussions/${i}`">
                                                 <div class="relative">
                                                     <div
                                                         class="font-bold text-lg col-span-2"
@@ -93,7 +93,9 @@
                                                 </div> -->
                                                 </div>
 
-                                                <div class="mt-2">
+                                                <div
+                                                    class="mt-2 line-clamp-4 xl:line-clamp-3"
+                                                >
                                                     {{
                                                         discussionCard.description
                                                     }}
@@ -168,7 +170,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="mt-10">
+            <div class="xl:mt-10 -mt-10">
                 <div>
                     <h1 class="font-bold">Previously Read Books</h1>
                 </div>
