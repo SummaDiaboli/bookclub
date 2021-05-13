@@ -13,6 +13,7 @@ module.exports = {
     // add your custom rules here
     rules: {
         'prettier/prettier': 0,
-        'no-console': 'off'
+        'no-console': 'off',
+        'vue/no-v-html': 'off'
     },
 }

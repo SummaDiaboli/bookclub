@@ -1,4 +1,3 @@
-/* eslint-disable vue/no-v-html */
 <template>
     <div>
         <div v-if="loading">Loading...</div>
@@ -42,7 +41,7 @@
                             class="bg-white rounded-md shadow-md max-h-56 px-2 py-2 text-justify"
                         >
                             <p
-                                class="overflow-ellipsis overflow-auto max-h-52"
+                                class="overflow-ellipsis overflow-auto max-h-52 pr-2"
                                 v-html="bookData.volumeInfo.description"
                             />
                         </div>
@@ -135,10 +134,10 @@ export default Vue.extend({
         }
     },
     created() {
-        fetch(
-            `https://www.googleapis.com/books/v1/volumes/${this.$route.params.id}`
-        )
-            .then((response) => response.json())
+        this.$axios
+            .$get(
+                `https://www.googleapis.com/books/v1/volumes/${this.$route.params.id}`
+            )
             .then((data) => {
                 this.bookData = data
                 // console.log(data)
