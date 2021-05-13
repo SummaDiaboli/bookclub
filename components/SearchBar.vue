@@ -20,7 +20,7 @@
             </span>
         </div>
 
-        <div class="absolute pt-1">
+        <div class="relative xl:absolute pt-1">
             <div
                 class="rounded-md shadow-md w-70 max-h-52 overflow-auto bg-white"
             >
