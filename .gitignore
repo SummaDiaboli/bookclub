@@ -95,3 +95,7 @@ sw.*
 #fauna config
 .faunarc
 .graphqlconfig
+
+
+# Onesignal
+OneSignalSDK*
