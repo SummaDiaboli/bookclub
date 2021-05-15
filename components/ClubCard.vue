@@ -4,6 +4,7 @@
             <img
                 class="object-cover h-52 min-w-full"
                 src="https://picsum.photos/900?random=2"
+                :alt="`${name} Club Image`"
             />
         </div>
         <div class="min-w-full">

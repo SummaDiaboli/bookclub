@@ -2,7 +2,7 @@
     <div>
         <div v-if="loading">Loading...</div>
         <div v-else>
-            <div class="flex flex-wrap lg:flex-row gap-16">
+            <div class="flex flex-col lg:flex-row gap-16">
                 <div
                     class="lg:w-2/3 flex flex-wrap gap-4 h-84 justify-center xl:justify-start"
                 >
@@ -26,7 +26,7 @@
                             <span>{{ author }}</span>
                         </div>
 
-                        <div class="flex flex-wrap gap-1">
+                        <div class="flex flex-wrap line-clamp-3 xl:line-clamp-none-4 gap-1">
                             Tags:
                             <div
                                 v-for="genre in bookData.volumeInfo.categories"

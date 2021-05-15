@@ -42,13 +42,15 @@ export default {
         '@nuxt/typescript-build',
         // https://go.nuxtjs.dev/tailwindcss
         '@nuxtjs/tailwindcss',
-        '@braid/vue-formulate/nuxt'
+        '@braid/vue-formulate/nuxt',
+        '@nuxtjs/pwa'
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
+        '@nuxtjs/onesignal'
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -71,4 +73,13 @@ export default {
         fallback: true
         // routes: getDynamicRoutes
     },
+
+    pwa: {
+        manifest: {
+            name: 'BookClub',
+            short_name: 'BookClub',
+            description: 'A place for book lovers to meet',
+
+        }
+    }
 }
