@@ -26,14 +26,14 @@
                 </nuxt-link>
 
                 <button
-                    class="inline-block xl:hidden w-8 h-8 pt-1 mr-10 xl:mr-0"
+                    class="inline-block xl:hidden w-8 h-8 pt-1 mr-10 xl:mr-0 focus:outline-none"
                     @click="
                         () => {
                             mobileMenuOpen = !mobileMenuOpen
                         }
                     "
                 >
-                    <FontAwesomeIcon :icon="['fas', 'bars']" />
+                    <FontAwesomeIcon :icon="['fas', 'bars']" size="2x" />
                 </button>
 
                 <div
