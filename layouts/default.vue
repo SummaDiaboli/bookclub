@@ -139,6 +139,27 @@ const footerLinks = [
 
 // const fetchBooks = () => {}
 
+const query = (user: string, firstname: string) => {
+    return `
+    {
+        ${user} {
+            ${firstname}
+            lastname
+            email
+            discussions {
+                id
+                created_at
+                comments {
+                    id
+                }
+                title
+                text
+            }
+        }
+    }
+`
+}
+
 export default Vue.extend({
     directives: {
         ClickOutside,
@@ -155,8 +176,23 @@ export default Vue.extend({
             mobileMenuOpen: false,
         }
     },
-    // created() {
-    //     this.$router.replace('/')
-    // },
+    created() {
+        // console.log(process.env.HASURA_KEY)
+        const users = query('users', 'firstname')
+
+        this.$axios
+            .$post(
+                `https://bookclub.hasura.app/v1/graphql`,
+                JSON.stringify({ query: users }),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-hasura-admin-secret': `${process.env.HASURA_KEY}`,
+                    },
+                }
+            )
+            .then((res) => res.data)
+            .then((data) => console.log(data.users))
+    },
 })
 </script>

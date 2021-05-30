@@ -27,6 +27,10 @@ export default {
         link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
 
+    env: {
+        HASURA_KEY: process.env.HASURA_ADMIN_SECRET
+    },
+
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 
@@ -43,19 +47,30 @@ export default {
         // https://go.nuxtjs.dev/tailwindcss
         '@nuxtjs/tailwindcss',
         '@braid/vue-formulate/nuxt',
-        '@nuxtjs/pwa'
+        '@nuxtjs/pwa',
+        '@nuxtjs/apollo'
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
-        '@nuxtjs/onesignal'
+        '@nuxtjs/onesignal',
+        '@nuxtjs/apollo'
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
         retry: { retries: 3 }
+    },
+
+    apollo: {
+        clientConfigs: {
+            default: {
+                httpEndpoint: process.env.HTTP_ENDPOINT,
+                // wsEndpoint: process.env.WS_ENDPOINT
+            }
+        }
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
