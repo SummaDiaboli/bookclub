@@ -99,3 +99,6 @@ sw.*
 
 # Onesignal
 OneSignalSDK*
+
+#Hasura
+.hasurasecret

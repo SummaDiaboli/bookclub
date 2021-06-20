@@ -9,14 +9,42 @@
 
             <div class="bg-white xl:h-16 shadow-md">
                 <div
-                    class="flex flex-col gap-1 xl:flex-row xl:gap-32 justify-center h-full items-center"
+                    class="
+                        flex flex-col
+                        gap-1
+                        xl:flex-row xl:gap-32
+                        justify-center
+                        h-full
+                        items-center
+                    "
                 >
                     <span class="text-md text-bookgray">
-                        Reading: The Court of Silver Flames
+                        <div v-if="$fetchState.pending">
+                            Currently reading: ...
+                        </div>
+                        <div v-else-if="$fetchState.error">
+                            Currently reading:
+                        </div>
+                        <div v-else>
+                            Currently reading: {{ clubDetails.reading }}
+                        </div>
                     </span>
-                    <span class="font-medium text-2xl">The Ladies Club</span>
-                    <span class="text-md text-bookgray">41k members</span>
-                    <span class="text-md text-bookgray">2k online</span>
+                    <span class="font-medium text-2xl">
+                        <div v-if="$fetchState.pending">...</div>
+                        <div v-else-if="$fetchState.error">--</div>
+                        <div v-else>{{ clubDetails.name }}</div>
+                    </span>
+
+                    <span class="text-md text-bookgray">
+                        <div v-if="$fetchState.pending">- members</div>
+                        <div v-else-if="$fetchState.error">- members</div>
+                        <div v-else>
+                            {{ clubDetails.members }} member{{
+                                clubDetails.members > 1 ? 's' : ''
+                            }}
+                        </div>
+                    </span>
+                    <!-- <span class="text-md text-bookgray">- online</span> -->
                 </div>
             </div>
         </div>
@@ -28,26 +56,35 @@
                     <div class="flex justify-between items-center">
                         <h1 class="font-bold">About us</h1>
                         <button
-                            class="bg-bookclubnav rounded-lg text-md font-light px-2 shadow-sm hover:shadow-md focus:outline-none"
+                            class="
+                                bg-bookclubnav
+                                rounded-lg
+                                text-md
+                                font-light
+                                px-2
+                                shadow-sm
+                                hover:shadow-md
+                                focus:outline-none
+                            "
                         >
                             Join Group
                         </button>
                     </div>
 
                     <div
-                        class="bg-white rounded-md shadow-md  mt-2 px-2 py-1"
+                        class="
+                            bg-white
+                            rounded-md
+                            shadow-md
+                            mt-2
+                            px-2
+                            py-2
+                            min-h-[2rem]
+                        "
                     >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Purus, diam enim, risus id ac eget mi tincidunt. Eu,
-                        enim massa, arcu tellus dui eget at. Ultricies convallis
-                        sem lacus, lacus. Mi viverra eget maecenas sit arcu sed
-                        amet. Leo non, eu donec lectus volutpat donec. Vitae,
-                        duis velit nunc nunc ultricies facilisis proin. Odio
-                        eget ut scelerisque ut odio sit aliquam. Commodo nisl,
-                        interdum semper pellentesque. Ultricies libero blandit
-                        semper aliquam. In quam quis nibh molestie risus vitae.
-                        Id ultrices urna laoreet volutpat rhoncus aliquam quis
-                        libero.
+                        <div v-if="$fetchState.pending">...</div>
+                        <div v-else-if="$fetchState.error"></div>
+                        <div v-else>{{ clubDetails.about }}</div>
                     </div>
                 </div>
 
@@ -66,13 +103,25 @@
                             <div v-for="i in 3" :key="i" class="">
                                 <li>
                                     <div
-                                        class="bg-white xl:max-h-40 rounded-md shadow-md hover:shadow-lg"
+                                        class="
+                                            bg-white
+                                            xl:max-h-40
+                                            rounded-md
+                                            shadow-md
+                                            hover:shadow-lg
+                                        "
                                     >
                                         <div class="px-6 py-2">
-                                            <nuxt-link :to="`/discussions/${i}`">
+                                            <nuxt-link
+                                                :to="`/discussions/${i}`"
+                                            >
                                                 <div class="relative">
                                                     <div
-                                                        class="font-bold text-lg col-span-2"
+                                                        class="
+                                                            font-bold
+                                                            text-lg
+                                                            col-span-2
+                                                        "
                                                     >
                                                         {{
                                                             discussionCard.title
@@ -94,7 +143,11 @@
                                                 </div>
 
                                                 <div
-                                                    class="mt-2 line-clamp-4 xl:line-clamp-3"
+                                                    class="
+                                                        mt-2
+                                                        line-clamp-4
+                                                        xl:line-clamp-3
+                                                    "
                                                 >
                                                     {{
                                                         discussionCard.description
@@ -104,7 +157,12 @@
 
                                             <!-- Bottom card actions -->
                                             <div
-                                                class="mt-2 relative flex space-x-5"
+                                                class="
+                                                    mt-2
+                                                    relative
+                                                    flex
+                                                    space-x-5
+                                                "
                                             >
                                                 <!-- Bookmard icon -->
                                                 <div
@@ -120,7 +178,8 @@
                                                         ]"
                                                         @click="
                                                             prevent
-                                                            discussionCard.bookmarked = !discussionCard.bookmarked
+                                                            discussionCard.bookmarked =
+                                                                !discussionCard.bookmarked
                                                         "
                                                     />
                                                 </div>
@@ -133,7 +192,8 @@
                                                         ]"
                                                         @click="
                                                             prevent
-                                                            discussionCard.bookmarked = !discussionCard.bookmarked
+                                                            discussionCard.bookmarked =
+                                                                !discussionCard.bookmarked
                                                         "
                                                     />
                                                 </div>
@@ -147,7 +207,13 @@
 
                                                 <!-- Additional information -->
                                                 <div
-                                                    class="absolute top-0 right-0 text-sm text-gray-500 space-x-5"
+                                                    class="
+                                                        absolute
+                                                        top-0
+                                                        right-0
+                                                        text-sm text-gray-500
+                                                        space-x-5
+                                                    "
                                                 >
                                                     <span
                                                         >{{
@@ -177,15 +243,42 @@
 
                 <div class="grid grid-cols-2 mt-2 gap-5">
                     <img
-                        class="bg-white h-36 w-24 object-cover rounded-sm shadow-sm hover:shadow-md cursor-pointer"
+                        class="
+                            bg-white
+                            h-36
+                            w-24
+                            object-cover
+                            rounded-sm
+                            shadow-sm
+                            hover:shadow-md
+                            cursor-pointer
+                        "
                         src="https://picsum.photos/900?random=1"
                     />
                     <img
-                        class="bg-white h-36 w-24 object-cover rounded-sm shadow-sm hover:shadow-md cursor-pointer"
+                        class="
+                            bg-white
+                            h-36
+                            w-24
+                            object-cover
+                            rounded-sm
+                            shadow-sm
+                            hover:shadow-md
+                            cursor-pointer
+                        "
                         src="https://picsum.photos/900?random=2"
                     />
                     <img
-                        class="bg-white h-36 w-24 object-cover rounded-sm shadow-sm hover:shadow-md cursor-pointer"
+                        class="
+                            bg-white
+                            h-36
+                            w-24
+                            object-cover
+                            rounded-sm
+                            shadow-sm
+                            hover:shadow-md
+                            cursor-pointer
+                        "
                         src="https://picsum.photos/900?random=3"
                     />
                 </div>
@@ -196,6 +289,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { getClub, getClubMembersCount } from '~/queries/clubs'
 const discussionCard = {
     title: 'Why is Brando Sando taking his time to release Skyward 3?',
     tags: ['books', 'novel', 'question'],
@@ -207,8 +301,41 @@ const discussionCard = {
 }
 
 export default Vue.extend({
-    data: () => {
-        return { discussionCard }
+    data: (): { discussionCard: any; clubDetails: {} | void } => {
+        return { discussionCard, clubDetails: {} }
+    },
+    async fetch() {
+        const { id } = this.$route.params
+        const getClubQuery = getClub(id)
+        const getClubMembers = getClubMembersCount(id)
+
+        this.clubDetails = await this.$axios
+            .$post(
+                `${process.env.HTTP_ENDPOINT}`,
+                JSON.stringify({ query: getClubQuery }),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-hasura-admin-secret': `${process.env.HASURA_KEY}`,
+                    },
+                }
+            )
+            .then((res) => res.data.clubs[0])
+            .then((club) => club)
+
+        // eslint-disable-next-line dot-notation
+        this.clubDetails['members'] = await this.$axios
+            .$post(
+                `${process.env.HTTP_ENDPOINT}`,
+                JSON.stringify({ query: getClubMembers }),
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-hasura-admin-secret': `${process.env.HASURA_KEY}`,
+                    },
+                }
+            )
+            .then((res) => res.data.club_member_aggregate.aggregate.count)
     },
 })
 </script>

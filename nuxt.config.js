@@ -5,6 +5,14 @@ require('dotenv').config()
 //         ['/clubs/1', '/clubs/2', '/clubs/3'],
 //     )
 // }
+// const ApolloClientConfig = {
+//     httpEndpoint: process.env.HTTP_ENDPOINT,
+//     httpLinkOptions: {
+//         headers: {
+//             [process.env.AUTH_SERVER_ADMIN_HEADER]: process.env.HASURA_ADMIN_SECRET
+//         }
+//     }
+// }
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
@@ -27,11 +35,16 @@ export default {
         link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
 
+    env: {
+        HASURA_KEY: process.env.HASURA_ADMIN_SECRET,
+        HTTP_ENDPOINT: process.env.HTTP_ENDPOINT
+    },
+
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: ['~/plugins/fontawesome.js'],
+    plugins: ['~/plugins/fontawesome.js', '~/plugins/contentplaceholders.js'],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
@@ -43,20 +56,31 @@ export default {
         // https://go.nuxtjs.dev/tailwindcss
         '@nuxtjs/tailwindcss',
         '@braid/vue-formulate/nuxt',
-        '@nuxtjs/pwa'
+        '@nuxtjs/pwa',
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
-        '@nuxtjs/onesignal'
+        '@nuxtjs/onesignal',
+        // '@nuxtjs/apollo',
+        'cookie-universal-nuxt',
     ],
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
         retry: { retries: 3 }
     },
+
+    // apollo: {
+    //     clientConfigs: {
+    //         default: {
+    //             ...ApolloClientConfig
+    //             // wsEndpoint: process.env.WS_ENDPOINT
+    //         }
+    //     }
+    // },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},

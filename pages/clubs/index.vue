@@ -1,23 +1,45 @@
 <template>
     <div>
-        <div class="grid grid-cols-8">
+        <div class="grid grid-cols-8 overflow-x-hidden">
             <div class="col-start-1 col-end-7 row-start-1">
-                <span class="font-bold">All Clubs</span>
-                <ul class="flex flex-wrap gap-4">
-                    <div v-for="n in 3" :key="n">
-                        <li
-                            v-for="club in clubCards"
-                            :key="club.name"
-                            class="mt-4"
-                        >
-                            <nuxt-link :to="`/clubs/${n}`">
-                                <club-card
-                                    :name="club.name"
-                                    :reading="club.reading"
-                                />
-                            </nuxt-link>
-                        </li>
+                <new-club-modal />
+
+                <div class="flex justify-between">
+                    <span class="font-bold">All Clubs</span>
+                    <div
+                        v-show="getAuth"
+                        class="
+                            -mr-7
+                            xl:mr-10
+                            border
+                            rounded-md
+                            border-gray-700
+                            py-[0.1rem]
+                            px-1
+                            cursor-pointer
+                            hover:text-white hover:bg-gray-700
+                        "
+                        @click="toggleModal"
+                    >
+                        Add +
                     </div>
+                </div>
+                <ul class="flex flex-wrap gap-4">
+                    <li v-if="$fetchState.pending">Loading...</li>
+
+                    <li
+                        v-for="club in clubCards"
+                        v-else
+                        :key="club.name"
+                        :class="[getAuth ? 'mt-3' : 'mt-4']"
+                    >
+                        <nuxt-link :to="`/clubs/${club.id}`">
+                            <club-card
+                                :name="club.name"
+                                :reading="club.reading"
+                            />
+                        </nuxt-link>
+                    </li>
                 </ul>
             </div>
 
@@ -33,7 +55,14 @@
                     </div>
                     <div class="min-w-full">
                         <div
-                            class="pt-2 px-2 leading-tight text-center font-bold text-xl"
+                            class="
+                                pt-2
+                                px-2
+                                leading-tight
+                                text-center
+                                font-bold
+                                text-xl
+                            "
                         >
                             AMA: Brandon Sanderson
                         </div>
@@ -53,6 +82,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import ClubCard from '~/components/ClubCard.vue'
+import NewClubModal from '~/components/NewClubModal.vue'
+import { getClubs } from '~/queries/clubs'
 
 const clubCards = [
     { name: 'The Ladies Club', reading: 'The Court of Silver Flames' },
@@ -61,10 +92,64 @@ const clubCards = [
 ]
 
 export default Vue.extend({
-    components: { ClubCard },
+    components: { ClubCard, NewClubModal },
     data: () => {
         return { clubCards }
     },
-    head: { title: 'Groups' },
+    async fetch() {
+        const query = getClubs()
+
+        this.clubCards = await this.$axios
+            .$post(`${process.env.HTTP_ENDPOINT}`, JSON.stringify({ query }), {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-hasura-admin-secret': `${process.env.HASURA_KEY}`,
+                },
+            })
+            .then((res) => res.data)
+            .then((data) => data.clubs)
+    },
+    head: { title: 'Clubs' },
+    computed: {
+        getAuth() {
+            return this.$store.state.users.auth
+        },
+    },
+    activated() {
+        // Call fetch again if last fetch more than 5 mins ago
+        if (this.$fetchState.timestamp <= Date.now() - 300000) {
+            this.$fetch()
+        }
+    },
+    methods: {
+        toggleModal() {
+            this.$store.commit('modals/toggleModal', 'newClubModal')
+        },
+    },
+    // created() {
+    //     this.retrieveClubs()
+    // },
+    // methods: {
+    //     retrieveClubs() {
+    //         const query = getClubs()
+
+    //         this.$axios
+    //             .$post(
+    //                 `${process.env.HTTP_ENDPOINT}`,
+    //                 JSON.stringify({ query }),
+    //                 {
+    //                     headers: {
+    //                         'Content-Type': 'application/json',
+    //                         'x-hasura-admin-secret': `${process.env.HASURA_KEY}`,
+    //                     },
+    //                 }
+    //             )
+    //             .then((res) => res.data)
+    //             .then((data) => {
+    //                 console.log(data.clubs)
+    //                 this.clubCards = data.clubs
+    //             })
+    //     },
+    // },
 })
 </script>

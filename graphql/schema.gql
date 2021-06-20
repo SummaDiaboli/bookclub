@@ -7,6 +7,8 @@ type User {
     password: String!
     verified: Boolean
     clubs: [Club!]
+    comments: [Comment!]
+    discussions: [Discussion!]
 }
 
 type Book {
@@ -21,15 +23,19 @@ type Book {
 type Club {
     # id: ID! @unique
     name: String! @unique
+    about: String!
     members: [User!]!
     currentBook: Book! @relation 
     prevBooks: [Book!]! @relation(name: "previously_read")
     creationDate: Time!
+    discussions: [Discussion!]
 }
 
 type Discussion {
     # id: ID! @unique
+    title: String!
     text: String!
+    author: User! @relation
     comments: [Comment!]! @relation
     tags: [Tag!] @relation
     creationDate: Time!
@@ -37,6 +43,7 @@ type Discussion {
 
 type Comment {
     # id: ID! @unique
+    author: User!
     text: String!
     discussion: Discussion! @relation
     tags: [Tag!] @relation

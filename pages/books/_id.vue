@@ -26,7 +26,9 @@
                             <span>{{ author }}</span>
                         </div>
 
-                        <div class="flex flex-wrap line-clamp-3 xl:line-clamp-none-4 gap-1">
+                        <div
+                            class="flex flex-wrap line-clamp-3 xl:line-clamp-none-4 gap-1"
+                        >
                             Tags:
                             <div
                                 v-for="genre in bookData.volumeInfo.categories"
@@ -38,6 +40,7 @@
                         </div>
 
                         <div
+                            v-if="bookData.volumeInfo.description !== undefined"
                             class="bg-white rounded-md shadow-md max-h-56 px-2 py-2 text-justify"
                         >
                             <p
@@ -152,6 +155,9 @@ export default Vue.extend({
             } else {
                 return 'https://picsum.photos/900?random=1'
             }
+        },
+        getData(e) {
+            console.log(e)
         },
     },
 })
