@@ -504,6 +504,7 @@ export default Vue.extend({
 
         loginUser() {
             if (this.login.email !== '' && this.login.password !== '') {
+                this.loading = true
                 const query = loginUser(this.login.email, this.login.password)
                 this.$axios
                     .$post(
@@ -518,10 +519,14 @@ export default Vue.extend({
                     )
                     .then((res) => res.data)
                     .then((data) => {
+                        this.loading = false
                         if (data.users.length > 0) {
                             this.$store.commit('users/login', data.users[0])
                             this.$cookies.set('user', data.users[0])
-                            this.$store.commit('loginModal/toggleModal')
+                            this.$store.commit(
+                                'modals/toggleModal',
+                                'loginModal'
+                            )
                             // console.log(this.$store.state.users.user.firstname)
                         } else {
                             console.log('This user does not exist')

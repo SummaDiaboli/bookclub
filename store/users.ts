@@ -11,7 +11,7 @@ export const state = (): State => ({
 export const mutations = {
     login(state: State, user: {}) {
         state.user = user
-        state.auth = true
+        state.auth = user !== undefined
     },
 
     logout(state: State) {
