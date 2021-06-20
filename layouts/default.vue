@@ -330,6 +330,9 @@ export default Vue.extend({
     created() {
         this.user = this.$cookies.get('user')
         this.$store.commit('users/login', this.user)
+        console.log(`Environement: ${process.env}`)
+        console.log(`URLS: ${process.env.HTTP_ENDPOINT}`)
+        console.log(process.env.HASURA_KEY)
     },
     methods: {
         toggleModal() {
