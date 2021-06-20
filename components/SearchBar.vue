@@ -4,7 +4,21 @@
             <input
                 v-model="searchText"
                 type="text"
-                class="w-70 text-sm px-3 mt-1 mr-2 h-9 mx-auto bg-white rounded-2xl flex space-x-4 hover:ring-1 hover:ring-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500"
+                class="
+                    w-70
+                    text-sm
+                    px-3
+                    mt-1
+                    mr-2
+                    h-9
+                    mx-auto
+                    bg-white
+                    rounded-2xl
+                    flex
+                    space-x-4
+                    hover:ring-1 hover:ring-gray-500
+                    focus:outline-none focus:ring-1 focus:ring-gray-500
+                "
                 placeholder="Books, Authors, Clubs..."
                 @keyup.enter="getBooks"
             />
@@ -21,7 +35,14 @@
 
         <div class="relative xl:absolute pt-1">
             <div
-                class="rounded-md shadow-md w-70 max-h-52 overflow-auto bg-white"
+                class="
+                    rounded-md
+                    shadow-md
+                    w-70
+                    max-h-52
+                    overflow-auto
+                    bg-white
+                "
             >
                 <div
                     v-for="book in searchResults"
