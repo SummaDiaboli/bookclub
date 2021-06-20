@@ -250,6 +250,7 @@ export default Vue.extend({
     head: { title: 'Discussions' },
     computed: {
         getAuth() {
+            console.log(this.$store.state.users.auth)
             return this.$store.state.users.auth
         },
     },

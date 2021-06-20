@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 // const getDynamicRoutes = function() {
 //     return [].concat(
 //         ['/clubs/1', '/clubs/2', '/clubs/3'],

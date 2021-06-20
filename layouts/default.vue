@@ -181,8 +181,7 @@
                 class="
                     fixed
                     top-[20%]
-                    xl:left-[30%]
-                    xl:min-w-[40%]
+                    xl:left-[30%] xl:min-w-[40%]
                     min-w-full
                     z-50
                     bg-bookclubnav
@@ -330,9 +329,6 @@ export default Vue.extend({
     created() {
         this.user = this.$cookies.get('user')
         this.$store.commit('users/login', this.user)
-        console.log(`Environement: ${process.env}`)
-        console.log(`URLS: ${process.env.HTTP_ENDPOINT}`)
-        console.log(process.env.HASURA_KEY)
     },
     methods: {
         toggleModal() {
