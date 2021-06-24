@@ -2,12 +2,14 @@ interface State {
     loginModal: boolean
     newClubModal: boolean
     newDiscussionModal: boolean
+    newCommentModal: boolean
 }
 
 export const state = (): State => ({
     loginModal: false,
     newClubModal: false,
     newDiscussionModal: false,
+    newCommentModal: false,
 })
 
 export const mutations = {
@@ -23,6 +25,10 @@ export const mutations = {
 
             case 'newDiscussionModal':
                 state.newDiscussionModal = !state.newDiscussionModal
+                break
+
+            case 'newCommentModal':
+                state.newCommentModal = !state.newCommentModal
                 break
 
             default:
