@@ -73,7 +73,7 @@
                                     :lines="3"
                                 />
 
-                                <div>
+                                <div v-show="!$fetchState.pending">
                                     <div class="cursor-pointer">
                                         <FontAwesomeIcon
                                             :icon="['fas', 'share']"
@@ -193,6 +193,12 @@
                                             }}
                                             replies</span
                                         > -->
+                                            <span v-if="!$fetchState.pending"
+                                                >{{
+                                                    discussion.comments.length
+                                                }}
+                                                replies</span
+                                            >
                                             <span>{{
                                                 convertDate(
                                                     discussion.created_at
@@ -250,7 +256,6 @@ export default Vue.extend({
     head: { title: 'Discussions' },
     computed: {
         getAuth() {
-            console.log(this.$store.state.users.auth)
             return this.$store.state.users.auth
         },
     },

@@ -26,45 +26,10 @@
 
             <!-- Form -->
             <div class="flex flex-col justify-center items-center mb-8">
-                <h2 class="font-bold text-lg">Create New Discussion</h2>
+                <h2 class="font-bold text-lg">Reply to Discussion</h2>
 
                 <form class="md:w-full max-w-lg min-w-full text-sm">
                     <div class="mx-3">
-                        <div class="mb-4">
-                            <label
-                                class="
-                                    block
-                                    text-gray-700 text-sm
-                                    font-bold
-                                    mb-2
-                                "
-                                for="title"
-                            >
-                                Title
-                            </label>
-                            
-                            <input
-                                id="title"
-                                v-model="title"
-                                class="
-                                    appearance-none
-                                    block
-                                    w-full
-                                    bg-gray-200
-                                    text-gray-700
-                                    border border-gray-200
-                                    rounded
-                                    py-3
-                                    px-4
-                                    leading-tight
-                                    focus:outline-none
-                                    focus:bg-white
-                                    focus:border-gray-500
-                                "
-                                type="text"
-                            />
-                        </div>
-
                         <div class="mb-3">
                             <label
                                 class="
@@ -114,7 +79,7 @@
                                     rounded
                                 "
                                 type="button"
-                                @click.prevent="createDiscussion"
+                                @click.prevent="createReply"
                             >
                                 <FontAwesomeIcon
                                     v-if="loading"
@@ -134,11 +99,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { createDiscussion } from '~/queries/discussions'
+import { createReply } from '~/queries/discussions'
 export default Vue.extend({
     data: () => {
         return {
-            title: '',
             text: '',
             userId: '',
             loading: false,
@@ -150,20 +114,21 @@ export default Vue.extend({
         },
 
         checkModal() {
-            return this.$store.state.modals.newDiscussionModal
+            return this.$store.state.modals.newCommentModal
         },
     },
     methods: {
         toggleModal() {
-            this.$store.commit('modals/toggleModal', 'newDiscussionModal')
+            this.$store.commit('modals/toggleModal', 'newCommentModal')
         },
 
-        createDiscussion() {
-            if (this.title !== '' && this.text !== '') {
+        createReply() {
+            if (this.text !== '') {
                 this.loading = true
 
                 const userId = this.getUser?.id
-                const query = createDiscussion(userId, this.text, this.title)
+                const { id } = this.$route.params
+                const query = createReply(userId, id, this.text)
 
                 this.$axios
                     .$post(
@@ -180,7 +145,8 @@ export default Vue.extend({
                         // TODO: Show an error when it fails to create discussion
                         {
                             // console.log(res)
-                            if (res.data.insert_discussions_one) {
+                            if (res.data.insert_comments_one) {
+                                this.text = ''
                                 this.toggleModal()
                                 this.$nuxt.refresh()
                             } else {

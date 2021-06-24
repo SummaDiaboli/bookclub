@@ -1,20 +1,43 @@
 <template>
     <div>
+        <new-comment-modal />
         <!-- Discussion -->
         <div class="bg-white max p-5 w-full rounded-sm shadow-md">
-            <div class="flex flex-wrap gap-2 items-center">
+            <div
+                v-show="!$fetchState.pending"
+                class="flex flex-wrap gap-2 items-center"
+            >
                 <div class="bg-bookclubnav rounded-full h-6 w-6">
-                    <img :src="data.creatorPhoto" class="rounded-full h-6" />
+                    <img :src="creatorPhoto" class="rounded-full h-6" />
                 </div>
-                <div class="text-sm font-bold">{{ data.creator }}</div>
+                <content-placeholders v-if="$fetchState.pending">
+                    <content-placeholders-text :lines="1" />
+                </content-placeholders>
+
+                <div v-else class="text-sm font-bold">
+                    {{
+                        `${dicussionDetails.author.firstname} ${dicussionDetails.author.lastname}`
+                    }}
+                </div>
             </div>
 
-            <div class="text-xl font-bold mt-3">{{ data.title }}</div>
-            <div class="mt-2 text-gray-700">{{ data.text }}</div>
+            <content-placeholders v-if="$fetchState.pending">
+                <content-placeholders-heading :lines="1" />
+                <content-placeholders-text :lines="3" />
+            </content-placeholders>
+
+            <div v-else>
+                <div class="text-xl font-bold mt-3">
+                    {{ dicussionDetails.title }}
+                </div>
+                <div class="mt-2 text-gray-700">
+                    {{ dicussionDetails.text }}
+                </div>
+            </div>
 
             <div class="mt-2 relative flex gap-8">
                 <!-- Bookmard icon -->
-                <div v-if="!data.bookmarked">
+                <!-- <div v-if="!data.bookmarked">
                     <FontAwesomeIcon
                         class="cursor-pointer"
                         :icon="['far', 'bookmark']"
@@ -33,78 +56,153 @@
                             data.bookmarked = !data.bookmarked
                         "
                     />
-                </div>
+                </div> -->
 
-                <div class="cursor-pointer">
+                <div v-show="!$fetchState.pending" class="cursor-pointer">
                     <FontAwesomeIcon :icon="['fas', 'share']" />
                     <!-- <span class="text-sm ml-1">Share</span> -->
                 </div>
 
                 <!-- Additional information -->
                 <div
-                    class="absolute top-0 right-0 text-sm text-gray-500 space-x-5"
+                    class="
+                        absolute
+                        top-0
+                        right-0
+                        text-sm text-gray-500
+                        space-x-5
+                    "
                 >
-                    <span>{{ data.replyNum }} replies</span>
-                    <span>{{ data.dateCreated }}</span>
+                    <!-- <span>{{}}</span> -->
+                    <span v-if="!$fetchState.pending"
+                        >{{ dicussionDetails.comments.length }} replies</span
+                    >
+                    <span v-if="!$fetchState.pending">{{
+                        convertDate(dicussionDetails.created_at)
+                    }}</span>
                 </div>
             </div>
         </div>
 
         <!-- Comment Section -->
         <div class="mt-4">
-            <h1 class="font-bold cursor-pointer inline-block">
-                New
-                <FontAwesomeIcon :icon="['fas', 'caret-down']" />
+            <h1
+                class="
+                    font-bold
+                    cursor-pointer
+                    flex
+                    justify-between
+                    items-center
+                "
+            >
+                <div>
+                    New
+                    <FontAwesomeIcon :icon="['fas', 'caret-down']" />
+                </div>
+
+                <div
+                    v-show="getAuth"
+                    class="
+                        cursor-pointer
+                        py-1
+                        px-2
+                        border
+                        rounded-md
+                        font-light
+                        border-gray-700
+                        hover:text-white hover:bg-gray-700
+                    "
+                    @click="toggleModal"
+                >
+                    Reply +
+                </div>
             </h1>
 
             <div class="mt-4">
                 <ul class="flex flex-wrap gap-5 flex-col">
-                    <li v-for="n in 3" :key="n">
+                    <li
+                        v-for="discussionComment in dicussionDetails.comments"
+                        :key="discussionComment.id"
+                    >
                         <div class="bg-white px-4 py-2 rounded-md shadow-md">
                             <div
-                                class="flex flex-wrap xl:flex-row xl:flex-nowrap gap-3"
+                                class="
+                                    flex flex-wrap
+                                    xl:flex-row xl:flex-nowrap
+                                    gap-3
+                                "
                             >
                                 <!-- <div class="flex flex-wrap gap-2"> -->
                                 <div
-                                    class="bg-bookclubnav invisible rounded-full xl:h-8 xl:w-32 xl:visible h-0 w-0"
+                                    class="
+                                        bg-bookclubnav
+                                        invisible
+                                        rounded-full
+                                        xl:h-8 xl:w-8 xl:visible
+                                        h-0
+                                        w-0
+                                    "
                                 >
                                     <img
-                                        :src="comment.creatorPhoto"
-                                        class="rounded-full"
+                                        :src="creatorPhoto"
+                                        class="rounded-full object-contain h-8"
                                     />
                                 </div>
 
-                                <div>
+                                <div class="w-full">
                                     <div class="flex flex-wrap gap-3 xl:gap-0">
                                         <div
-                                            class="bg-bookclubnav rounded-full h-5 w-5 visible xl:invisible xl:h-0 xl:w-0"
+                                            class="
+                                                bg-bookclubnav
+                                                rounded-full
+                                                h-5
+                                                w-5
+                                                visible
+                                                xl:invisible xl:h-0 xl:w-0
+                                            "
                                         >
                                             <img
-                                                :src="comment.creatorPhoto"
+                                                :src="creatorPhoto"
                                                 class="rounded-full"
                                             />
                                         </div>
                                         <div
-                                            class="text-sm font-bold cursor-pointer inline-flex"
+                                            class="
+                                                text-sm
+                                                font-bold
+                                                cursor-pointer
+                                                inline-flex
+                                            "
                                         >
-                                            {{ comment.creator }}
+                                            {{
+                                                `${discussionComment.author.firstname} ${discussionComment.author.lastname}`
+                                            }}
                                         </div>
                                     </div>
                                     <!-- </div> -->
                                     <div class="text-justify mt-3 md:mt-1">
-                                        {{ comment.text }}
+                                        {{ discussionComment.text }}
                                     </div>
 
                                     <!-- Card actions -->
-                                    <div class="mt-2 relative flex gap-5">
+                                    <div
+                                        class="
+                                            mt-2
+                                            w-full
+                                            flex
+                                            gap-5
+                                            justify-between
+                                        "
+                                    >
                                         <!-- Bookmard icon -->
-                                        <div v-if="!comment.bookmarked">
+                                        <!-- <div v-if="!comment.bookmarked">
                                             <FontAwesomeIcon
                                                 class="cursor-pointer"
                                                 :icon="['far', 'bookmark']"
                                                 @click="
                                                     prevent
-                                                    comment.bookmarked = !comment.bookmarked
+                                                    comment.bookmarked =
+                                                        !comment.bookmarked
                                                 "
                                             />
                                         </div>
@@ -114,10 +212,11 @@
                                                 :icon="['fas', 'bookmark']"
                                                 @click="
                                                     prevent
-                                                    comment.bookmarked = !comment.bookmarked
+                                                    comment.bookmarked =
+                                                        !comment.bookmarked
                                                 "
                                             />
-                                        </div>
+                                        </div> -->
 
                                         <div class="cursor-pointer">
                                             <FontAwesomeIcon
@@ -127,11 +226,11 @@
                                         </div>
 
                                         <!-- Additional information -->
-                                        <div
-                                            class="absolute top-0 right-0 text-sm text-gray-500 space-x-5"
-                                        >
+                                        <div class="text-sm text-gray-500">
                                             <span>{{
-                                                comment.dateCreated
+                                                convertDate(
+                                                    discussionComment.created_at
+                                                )
                                             }}</span>
                                         </div>
                                     </div>
@@ -146,36 +245,76 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable camelcase */
+import moment from 'moment'
 import Vue from 'vue'
+import NewCommentModal from '~/components/NewCommentModal.vue'
+import { getSpecificDiscussion } from '~/queries/discussions'
 
-const data = {
-    title: 'Why is Brando Sando taking his time to release Skyward 3?',
-    creator: 'Salim Hussaini',
-    creatorPhoto: 'https://picsum.photos/900?random=6',
-    tags: ['books', 'novel', 'question'],
-    text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque viverra venenatis ac diam semper porttitor. Bibendum amet, fermentum a dui. Suspendisse lectus massa integer tristique volutpat ornare sapien. Interdum est non lobortis nibh aliquam sagittis leo. Aliquet amet volutpat porttitor mauris semper eu vitae pharetra at. Odio facilisi nulla arcu viverra id scelerisque. Mauris phasellus at condimentum amet lectus aliquet donec mi habitasse. Sit a commodo, laoreet vitae velit, ultrices. Nibh cras eu rhoncus leo nulla auctor elementum. Turpis ridiculus sed proin faucibus. Faucibus ut cursus libero risus vulputate gravida volutpat. Et pellentesque placerat a eu sodales erat at lectus integer. In diam nisl, urna mi sodales elit sodales velit. Fames faucibus fames hendrerit risus ac adipiscing mi. Vulputate amet ac odio aliquam ullamcorper id arcu in. Sed sapien viverra tristique nascetur molestie orci. Ipsum, diam neque nec sem cras ipsum varius. Tincidunt scelerisque suspendisse accumsan augue. Mi pellentesque iaculis felis dictum vulputate posuere. Arcu congue vestibulum fusce condimentum dignissim morbi laoreet.',
-    bookmarked: false,
-    replyNum: '10k+',
-    dateCreated: 'Tue 3rd March, 2021',
+interface Author {
+    id: string
+    firstname: string
+    lastname: string
 }
 
-const comment = {
-    creator: 'Esther Ikpeme',
-    creatorPhoto: 'https://picsum.photos/900?random=7',
-    text:
-        'Maecenas diam tincidunt urna adipiscing adipiscing neque, in. Sed non malesuada mattis commodo. Proin sollicitudin posuere platea ultrices amet egestas. Tellus integer platea est et. Sit ipsum in lobortis sit tellus. Tincidunt a ultrices massa eu eget blandit donec nam. Felis id bibendum ipsum tortor ut. Sed eget pulvinar integer enim nunc cras. Leo suspendisse nam ultrices turpis curabitur ultrices diam. Sapien quam pretium mattis tempor tincidunt quis nulla. Viverra faucibus ac orci malesuada sed fermentum in amet. Amet, cursus eget posuere odio nulla turpis vitae. Integer sit netus vulputate dolor, accumsan aliquam lacus massa blandit. Vel eu vitae pellentesque accumsan.',
-    bookmarked: false,
-    dateCreated: 'Tue 3rd March, 2021',
-    replies: 4,
+interface Comment {
+    id: string
+    author: Author
+    created_at: string
+    discussion_id: string
+    text: string
+}
+
+interface Club {
+    id: string
+    name: string
+}
+
+interface Discussion {
+    author: Author
+    comments: Comment[]
+    created_at: string
+    id: string
+    text: string
+    title: string
+    club?: Club
 }
 
 export default Vue.extend({
+    components: { NewCommentModal },
     data: () => {
         return {
-            data,
-            comment,
+            creatorPhoto: 'https://picsum.photos/900?random=6',
+            dicussionDetails: {} as Discussion,
         }
+    },
+    async fetch() {
+        const { id } = this.$route.params
+        const query = getSpecificDiscussion(id)
+
+        this.dicussionDetails = await this.$axios
+            .$post(`${process.env.HTTP_ENDPOINT}`, JSON.stringify({ query }), {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-hasura-admin-secret': `${process.env.HASURA_KEY}`,
+                },
+            })
+            .then((res) => res.data.discussions[0])
+            .then((discussion) => discussion)
+    },
+    computed: {
+        getAuth() {
+            return this.$store.state.users.auth
+        },
+    },
+    methods: {
+        convertDate(date: Date) {
+            return moment(new Date(date)).calendar()
+        },
+
+        toggleModal() {
+            this.$store.commit('modals/toggleModal', 'newCommentModal')
+        },
     },
 })
 </script>

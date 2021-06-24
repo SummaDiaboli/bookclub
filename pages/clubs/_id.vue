@@ -55,20 +55,20 @@
                 <div class="mt-10">
                     <div class="flex justify-between items-center">
                         <h1 class="font-bold">About us</h1>
-                        <button
+                        <div
                             class="
-                                bg-bookclubnav
-                                rounded-lg
-                                text-md
-                                font-light
+                                cursor-pointer
+                                py-1
                                 px-2
-                                shadow-sm
-                                hover:shadow-md
-                                focus:outline-none
+                                border
+                                rounded-md
+                                font-light
+                                border-gray-700
+                                hover:text-white hover:bg-gray-700
                             "
                         >
                             Join Group
-                        </button>
+                        </div>
                     </div>
 
                     <div
