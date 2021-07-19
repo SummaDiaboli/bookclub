@@ -42,7 +42,7 @@ export default {
     css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: ['~/plugins/fontawesome.js', '~/plugins/contentplaceholders.js'],
+    plugins: ['~/plugins/fontawesome.js', '~/plugins/datetime.js', '~/plugins/contentplaceholders.js'],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,

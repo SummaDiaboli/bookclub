@@ -4,7 +4,14 @@
         <div v-else>
             <div class="flex flex-col lg:flex-row gap-16">
                 <div
-                    class="lg:w-2/3 flex flex-wrap gap-4 h-84 justify-center xl:justify-start"
+                    class="
+                        lg:w-2/3
+                        flex flex-wrap
+                        gap-4
+                        h-84
+                        justify-center
+                        xl:justify-start
+                    "
                 >
                     <div class="bg-bookclubnav h-84 w-52">
                         <img
@@ -18,22 +25,22 @@
                             {{ bookData.volumeInfo.title }}
                         </div>
 
-                        <div
-                            v-for="author in bookData.volumeInfo.authors"
-                            :key="author"
-                            class="font-semibold mt-2"
-                        >
-                            <span>{{ author }}</span>
+                        <div class="flex flex-wrap gap-1 mt-2 line-clamp-2">
+                            <div
+                                v-for="author in bookData.volumeInfo.authors"
+                                :key="author"
+                                class="font-semibold"
+                            >
+                                <span>{{ author }},</span>
+                            </div>
                         </div>
 
-                        <div
-                            class="flex flex-wrap line-clamp-3 xl:line-clamp-none-4 gap-1"
-                        >
-                            Tags:
+                        <div class="flex flex-wrap gap-0 xl:gap-x-1">
+                            <span> Tags: </span>
                             <div
                                 v-for="genre in bookData.volumeInfo.categories"
                                 :key="genre"
-                                class="font-light text-gray-500"
+                                class="font-light text-gray-500 flex"
                             >
                                 {{ genre }},
                             </div>
@@ -41,10 +48,22 @@
 
                         <div
                             v-if="bookData.volumeInfo.description !== undefined"
-                            class="bg-white rounded-md shadow-md max-h-56 px-2 py-2 text-justify"
+                            class="
+                                bg-white
+                                rounded-md
+                                shadow-md
+                                min-h-[10rem]
+                                px-2
+                                py-2
+                                text-justify
+                            "
                         >
                             <p
-                                class="overflow-ellipsis overflow-auto max-h-52 pr-2"
+                                class="
+                                    overflow-ellipsis overflow-auto
+                                    max-h-52
+                                    pr-2
+                                "
                                 v-html="bookData.volumeInfo.description"
                             />
                         </div>
@@ -59,15 +78,42 @@
 
                     <div class="grid grid-cols-2 mt-2 gap-5">
                         <img
-                            class="bg-white h-36 w-24 object-cover rounded-sm shadow-sm hover:shadow-md cursor-pointer"
+                            class="
+                                bg-white
+                                h-36
+                                w-24
+                                object-cover
+                                rounded-sm
+                                shadow-sm
+                                hover:shadow-md
+                                cursor-pointer
+                            "
                             src="https://picsum.photos/900?random=1"
                         />
                         <img
-                            class="bg-white h-36 w-24 object-cover rounded-sm shadow-sm hover:shadow-md cursor-pointer"
+                            class="
+                                bg-white
+                                h-36
+                                w-24
+                                object-cover
+                                rounded-sm
+                                shadow-sm
+                                hover:shadow-md
+                                cursor-pointer
+                            "
                             src="https://picsum.photos/900?random=2"
                         />
                         <img
-                            class="bg-white h-36 w-24 object-cover rounded-sm shadow-sm hover:shadow-md cursor-pointer"
+                            class="
+                                bg-white
+                                h-36
+                                w-24
+                                object-cover
+                                rounded-sm
+                                shadow-sm
+                                hover:shadow-md
+                                cursor-pointer
+                            "
                             src="https://picsum.photos/900?random=3"
                         />
                     </div>
@@ -81,7 +127,14 @@
                     <li v-for="club in clubCards" :key="club.name" class="mt-4">
                         <nuxt-link :to="`/clubs/${club.id}`">
                             <div
-                                class="bg-white h-64 w-70 rounded-sm shadow-md hover:shadow-lg"
+                                class="
+                                    bg-white
+                                    h-64
+                                    w-70
+                                    rounded-sm
+                                    shadow-md
+                                    hover:shadow-lg
+                                "
                             >
                                 <div class="">
                                     <img
@@ -93,7 +146,12 @@
                                 </div>
                                 <div class="min-w-full">
                                     <div
-                                        class="pt-2 text-center font-bold text-xl"
+                                        class="
+                                            pt-2
+                                            text-center
+                                            font-bold
+                                            text-xl
+                                        "
                                     >
                                         {{ club.name }}
                                     </div>

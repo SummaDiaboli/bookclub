@@ -1,15 +1,40 @@
 <template>
-    <div class="h-screen text-center mt-56">
-        <!-- <div class=""> -->
-            <h1 v-if="error.statusCode === 404">Page not found</h1>
-            <h1 v-else>An error occurred</h1>
-            <NuxtLink
-                to="/"
-                class="font-display font-regular inline-block bg-green-500 p-2 rounded-md hover:shadow-md hover:bg-green-600"
-            >
-                Home page
-            </NuxtLink>
-        <!-- </div> -->
+    <div
+        class="
+            h-screen
+            flex flex-col
+            items-center
+            text-center
+            justify-center
+            bg-bookclubbody
+        "
+    >
+        <h1 v-if="error.statusCode === 404">
+            <p class="font-merriweather text-[8rem] lg:text-[16rem] -mt-40">404</p>
+
+            <p class="text-2xl mb-2 uppercase font-bold">Oops!!</p>
+
+            <p class="text-2xl mb-6 capitalize">
+                The page you're looking for doesn't exist
+            </p>
+        </h1>
+
+        <h1 v-else>An error occurred</h1>
+        <NuxtLink
+            to="/"
+            class="
+                cursor-pointer
+                py-1
+                px-2
+                text-xl
+                border-3
+                rounded-md
+                border-gray-700
+                hover:text-white hover:bg-gray-700
+            "
+        >
+            Back to Home
+        </NuxtLink>
     </div>
 </template>
 
