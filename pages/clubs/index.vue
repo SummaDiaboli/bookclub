@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="grid grid-cols-8 overflow-x-hidden">
-            <div class="col-start-1 col-end-7 row-start-1">
+        <div class="">
+            <div class="">
                 <new-club-modal />
 
                 <div class="flex justify-between">
@@ -43,7 +43,7 @@
                 </ul>
             </div>
 
-            <div class="col-start-7 col-span-2 invisible xl:visible">
+            <!-- <div class="col-start-7 col-span-2 invisible xl:visible">
                 <span class="font-bold">Upcoming Club Events</span>
 
                 <div class="bg-white h-72 mt-4 shadow-md rounded-sm">
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

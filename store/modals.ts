@@ -3,6 +3,7 @@ interface State {
     newClubModal: boolean
     newDiscussionModal: boolean
     newCommentModal: boolean
+    newReadingModal: boolean
 }
 
 export const state = (): State => ({
@@ -10,6 +11,7 @@ export const state = (): State => ({
     newClubModal: false,
     newDiscussionModal: false,
     newCommentModal: false,
+    newReadingModal: false
 })
 
 export const mutations = {
@@ -29,6 +31,10 @@ export const mutations = {
 
             case 'newCommentModal':
                 state.newCommentModal = !state.newCommentModal
+                break
+
+            case 'newReadingModal':
+                state.newReadingModal = !state.newReadingModal
                 break
 
             default:

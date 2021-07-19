@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="grid grid-cols-8">
+        <div class="">
             <!-- Main -->
-            <div class="col-start-1 col-end-7 row-start-1">
+            <div class="">
                 <span class="font-bold">All Books</span>
                 <div v-if="loading">Loading...</div>
-                <ul v-else class="flex flex-wrap gap-6 xl:gap-4">
+                <ul v-else class="flex flex-wrap gap-10 xl:gap-4 mt-3">
                     <li v-for="book in receivedBooks" :key="book.id">
                         <nuxt-link :to="`/books/${book.id}`">
                             <book-card
@@ -20,7 +20,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="col-start-7 col-span-2 invisible xl:visible">
+            <!-- <div class="col-start-7 col-span-2 invisible xl:visible">
                 <span class="font-bold">Upcoming Book Events</span>
 
                 <div class="bg-white h-72 mt-4 shadow-md rounded-sm">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

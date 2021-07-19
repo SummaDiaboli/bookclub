@@ -114,6 +114,7 @@
                                                     font-bold
                                                     text-lg
                                                     col-span-2
+                                                    line-clamp-2
                                                 "
                                             >
                                                 {{ discussion.title }}
